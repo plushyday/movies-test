@@ -1,23 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import NavigationLayout from 'screens/NavigationLayout';
+import { Routes, Route } from 'react-router-dom';
+import About from 'screens/About';
+import Movies from 'screens/Movies';
+
+const navigationList = [
+  { title: 'about', path: 'about' },
+  { title: 'movies', path: 'movies' },
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <Routes>
+          <Route
+            path="/"
+            element={<NavigationLayout navigationList={navigationList} />}
+          >
+            <Route index element={<div></div>} />
+
+            <Route path={'about'} element={<About />} />
+            <Route path={'movies'} element={<Movies />} />
+          
+            <Route path="*" element={<div></div>} />
+          </Route>
+        </Routes>
       </header>
     </div>
   );
