@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 import { PeopleAltOutlined } from '@mui/icons-material';
+
 import { StyledItemPaper, StyledPaperSmallBlock } from './style';
 
 const MovieCard = () => {
