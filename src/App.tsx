@@ -3,6 +3,7 @@ import NavigationLayout from 'screens/NavigationLayout';
 import { Routes, Route } from 'react-router-dom';
 import About from 'screens/About';
 import Movies from 'screens/Movies';
+import Home from 'screens/Home';
 
 const navigationList = [
   { title: 'about', path: 'about' },
@@ -18,12 +19,12 @@ function App() {
             path="/"
             element={<NavigationLayout navigationList={navigationList} />}
           >
-            <Route index element={<div></div>} />
+            <Route index element={<Home />} />
 
             <Route path={'about'} element={<About />} />
             <Route path={'movies'} element={<Movies />} />
-          
-            <Route path="*" element={<div></div>} />
+
+            <Route path="*" element={<Home />} />
           </Route>
         </Routes>
       </header>
