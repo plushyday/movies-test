@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationLayout from 'screens/NavigationLayout';
+import Layout from 'screens/Layout';
 import { Routes, Route } from 'react-router-dom';
 import About from 'screens/About';
 import Movies from 'screens/Movies';
@@ -15,10 +15,7 @@ function App() {
     <div>
       <header>
         <Routes>
-          <Route
-            path="/"
-            element={<NavigationLayout navigationList={navigationList} />}
-          >
+          <Route path="/" element={<Layout navigationList={navigationList} />}>
             <Route index element={<Home />} />
 
             <Route path={'about'} element={<About />} />

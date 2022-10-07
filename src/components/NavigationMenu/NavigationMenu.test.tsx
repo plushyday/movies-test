@@ -1,5 +1,7 @@
+import * as React from 'react';
+
 import { screen } from '@testing-library/react';
-import NavigationLayout from 'screens/NavigationLayout';
+import NavigationMenu from 'components/NavigationMenu';
 import { renderWithRouter } from 'utils/testUtils';
 
 const mockNavigationList = [
@@ -10,7 +12,7 @@ const mockNavigationList = [
 ];
 
 test('renders all navigation items', () => {
-  renderWithRouter(<NavigationLayout navigationList={mockNavigationList} />);
+  renderWithRouter(<NavigationMenu navigationList={mockNavigationList} />);
   const linkElements = screen.getAllByRole('menuitem');
   expect(linkElements).toHaveLength(mockNavigationList.length);
 });

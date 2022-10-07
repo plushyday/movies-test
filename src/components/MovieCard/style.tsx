@@ -7,10 +7,12 @@ export const StyledItemPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   width: '300px',
   color: theme.palette.text.secondary,
+  backgroundColor: theme.palette.primary.light,
 }));
 
 export const StyledPaperSmallBlock = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.light,
+  backgroundColor: theme.palette.primary.dark,
+  color: theme.palette.text.secondary,
   padding: theme.spacing(1),
   textAlign: 'center',
   height: '100px',

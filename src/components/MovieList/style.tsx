@@ -8,6 +8,7 @@ export const StyledItem = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export const StyledContainer = styled(Container)(() => ({
+export const StyledContainer = styled(Container)(({ theme }) => ({
   overflowX: 'scroll',
+  paddingBottom: theme.spacing(1),
 }));

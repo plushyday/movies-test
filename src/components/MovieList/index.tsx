@@ -7,7 +7,7 @@ import { StyledContainer, StyledItem } from './style';
 const MovieList = () => {
   return (
     <StyledContainer>
-      <Stack direction="row" mt={2} mb={2}>
+      <Stack direction="row">
         {[0, 1, 2, 3, 4, 5, 6].map((i) => (
           <MovieCard key={i} />
         ))}

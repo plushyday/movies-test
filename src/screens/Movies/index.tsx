@@ -4,12 +4,14 @@ import { Grid } from '@mui/material';
 
 import MovieList from 'components/MovieList';
 
+import { StyledGrid } from './style';
+
 const Movies = () => {
   return (
-    <Grid container>
+    <StyledGrid container>
       <MovieList />
       <ContentTable />
-    </Grid>
+    </StyledGrid>
   );
 };
 
