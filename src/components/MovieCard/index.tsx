@@ -4,14 +4,18 @@ import { PeopleAltOutlined } from '@mui/icons-material';
 
 import { StyledItemPaper, StyledPaperSmallBlock } from './style';
 
-const MovieCard = () => {
+interface Props {
+  data: Movie;
+}
+
+const MovieCard = ({ data: { title, episode_id, release_date } }: Props) => {
   return (
     <Grid container mr={5}>
       <StyledItemPaper>
         <Grid container justifyContent="space-between" mb={5}>
           <Grid item md={6}>
-            <Typography>Film Title</Typography>
-            <Typography>Release date</Typography>
+            <Typography>{title}</Typography>
+            <Typography>{release_date}</Typography>
           </Grid>
           <Grid container item md={6} justifyContent="end">
             <StyledPaperSmallBlock elevation={0}>
@@ -24,7 +28,7 @@ const MovieCard = () => {
                 justifyContent="center"
                 height="100%"
               >
-                <Typography>Episode 4</Typography>
+                <Typography>Episode {episode_id}</Typography>
               </Grid>
             </StyledPaperSmallBlock>
           </Grid>

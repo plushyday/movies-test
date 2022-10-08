@@ -1,9 +1,15 @@
-import React from 'react';
-import Layout from 'screens/Layout';
+import React, { useEffect } from 'react';
+
+import { useDispatch } from 'react-redux';
+
 import { Routes, Route } from 'react-router-dom';
+import LoaderOverlay from 'components/LoaderOverlay';
+import Layout from 'screens/Layout';
 import About from 'screens/About';
 import Movies from 'screens/Movies';
 import Home from 'screens/Home';
+import { fetchMovies } from 'store/moviesSlice';
+import { AppDispatch } from 'store';
 
 const navigationList = [
   { title: 'about', path: 'about' },
@@ -11,20 +17,25 @@ const navigationList = [
 ];
 
 function App() {
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, [dispatch]);
+
   return (
     <div>
-      <header>
-        <Routes>
-          <Route path="/" element={<Layout navigationList={navigationList} />}>
-            <Route index element={<Home />} />
+      <LoaderOverlay />
+      <Routes>
+        <Route path="/" element={<Layout navigationList={navigationList} />}>
+          <Route index element={<Home />} />
 
-            <Route path={'about'} element={<About />} />
-            <Route path={'movies'} element={<Movies />} />
+          <Route path={'about'} element={<About />} />
+          <Route path={'movies'} element={<Movies />} />
 
-            <Route path="*" element={<Home />} />
-          </Route>
-        </Routes>
-      </header>
+          <Route path="*" element={<Home />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
