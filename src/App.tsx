@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { Routes, Route } from 'react-router-dom';
 import LoaderOverlay from 'components/LoaderOverlay';
+import Alert from 'components/Alert';
 import Layout from 'screens/Layout';
 import About from 'screens/About';
 import Movies from 'screens/Movies';
@@ -23,6 +24,7 @@ function App() {
 
   return (
     <div>
+      <Alert />
       <LoaderOverlay />
       <Routes>
         <Route path="/" element={<Layout navigationList={navigationList} />}>

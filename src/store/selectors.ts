@@ -20,3 +20,11 @@ export const selectCharactersByMovie = createSelector(
 
 export const selectMovies = (state: RootState) =>
   Object.values(state.movies.movies);
+
+export const selectStatusIsLoading = (state: RootState) => {
+  return state.movies.status === 'loading';
+};
+
+export const selectError = (state: RootState) => {
+  return state.movies.error;
+};

@@ -1,16 +1,17 @@
 import * as React from 'react';
 
 import { CircularProgress } from '@mui/material';
-import { RootState, useAppSelector } from 'store';
+import { selectStatusIsLoading } from 'store/selectors';
+import { useAppSelector } from 'store';
 
 import { StyledBackdrop } from './style';
 
 export default function LoaderOverlay() {
-  const { status } = useAppSelector((state: RootState) => state.movies);
+  const isLoading = useAppSelector(selectStatusIsLoading);
 
   return (
     <div>
-      <StyledBackdrop open={status === 'loading'}>
+      <StyledBackdrop open={isLoading}>
         <CircularProgress color="inherit" />
       </StyledBackdrop>
     </div>

@@ -1,10 +1,15 @@
 import * as React from 'react';
 
+import { Typography } from '@mui/material';
+
+import { StyledGrid } from './style';
+
 const About = () => {
   return (
-    <div>
-      <h2>About</h2>
-    </div>
+    <StyledGrid>
+      <Typography>Characters from all SEVEN Star Wars films.</Typography>
+      <Typography>Now with The Force Awakens data!</Typography>
+    </StyledGrid>
   );
 };
 
