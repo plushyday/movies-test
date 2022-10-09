@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 
-import { useDispatch } from 'react-redux';
-
 import { Routes, Route } from 'react-router-dom';
 import LoaderOverlay from 'components/LoaderOverlay';
 import Layout from 'screens/Layout';
 import About from 'screens/About';
 import Movies from 'screens/Movies';
 import Home from 'screens/Home';
-import { fetchMovies } from 'store/moviesSlice';
-import { AppDispatch } from 'store';
+import { fetchMovies } from 'store/thunks';
+import { useAppDispatch } from 'store';
 
 const navigationList = [
   { title: 'about', path: 'about' },
@@ -17,7 +15,7 @@ const navigationList = [
 ];
 
 function App() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchMovies());

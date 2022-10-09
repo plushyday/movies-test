@@ -1,6 +1,9 @@
 import * as React from 'react';
+
 import { Button, Grid, Typography } from '@mui/material';
 import { PeopleAltOutlined } from '@mui/icons-material';
+import { setCharactersByMovie } from 'store/thunks';
+import { useAppDispatch } from 'store';
 
 import { StyledItemPaper, StyledPaperSmallBlock } from './style';
 
@@ -9,6 +12,7 @@ interface Props {
 }
 
 const MovieCard = ({ data: { title, episode_id, release_date } }: Props) => {
+  const dispatch = useAppDispatch();
   return (
     <Grid container mr={5}>
       <StyledItemPaper>
@@ -33,7 +37,13 @@ const MovieCard = ({ data: { title, episode_id, release_date } }: Props) => {
             </StyledPaperSmallBlock>
           </Grid>
         </Grid>
-        <Button variant="contained" endIcon={<PeopleAltOutlined />}>
+        <Button
+          variant="contained"
+          endIcon={<PeopleAltOutlined />}
+          onClick={() => {
+            dispatch(setCharactersByMovie(episode_id));
+          }}
+        >
           Show people
         </Button>
       </StyledItemPaper>

@@ -1,44 +1,22 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { fetchMovies, fetchCharactersByMovie } from 'store/thunks';
 
 const initialState: MoviesStoreState = {
-  movies: [],
+  movies: {},
+  movieCharacters: {},
+  selectedMovie: null,
   status: null,
   error: null,
 };
 
-export const fetchMovies = createAsyncThunk(
-  'movies/fetchMovies',
-  async function (_, { rejectWithValue }) {
-    let movies: Movie[] | [] = [];
-    try {
-      const response = await fetch('https://swapi.dev/api/films');
-
-      if (!response.ok) {
-        throw new Error('Server Error!');
-      }
-
-      const data: ServerDataMovies = await response.json();
-
-      if (data?.results instanceof Array && data.results.length > 0) {
-        movies = data.results.map((movieData) => ({
-          title: movieData.title,
-          episode_id: movieData.episode_id,
-          release_date: movieData.release_date,
-          characters: movieData.characters,
-        }));
-      }
-
-      return movies;
-    } catch (error: unknown) {
-      return rejectWithValue((error as Error).message);
-    }
-  }
-);
-
 const moviesSlice = createSlice({
   name: 'movies',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedMovie: (state, { payload }: PayloadAction<number>) => {
+      state.selectedMovie = payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.pending, (state) => {
       state.status = 'loading';
@@ -46,7 +24,6 @@ const moviesSlice = createSlice({
     });
     builder.addCase(fetchMovies.rejected, (state, action) => {
       state.status = 'fail';
-      state.movies = [];
       state.error = action.payload;
     });
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
@@ -54,7 +31,24 @@ const moviesSlice = createSlice({
       state.error = null;
       state.movies = action.payload;
     });
+    builder.addCase(fetchCharactersByMovie.pending, (state) => {
+      state.status = 'loading';
+      state.error = null;
+    });
+    builder.addCase(fetchCharactersByMovie.rejected, (state, action) => {
+      state.status = 'fail';
+      state.error = action.payload;
+    });
+    builder.addCase(fetchCharactersByMovie.fulfilled, (state, action) => {
+      state.status = 'success';
+      state.error = null;
+      state.movieCharacters = {
+        ...state.movieCharacters,
+        [action.payload.episode_id]: action.payload.characters,
+      };
+    });
   },
 });
 
+export const { setSelectedMovie } = moviesSlice.actions;
 export default moviesSlice.reducer;

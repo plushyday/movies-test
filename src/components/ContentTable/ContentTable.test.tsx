@@ -18,18 +18,23 @@ function generateMockTableData(amount: number) {
   return outputData;
 }
 
-// TODO: When nothing came to component
+test('renders that datatable is empty', () => {
+  const mockTableData: [] = [];
+  render(<ContentTable selectedMovieEpisode={0} rows={mockTableData} />);
+  const row = screen.getByRole('checkbox');
+  expect(row).toHaveTextContent('There is no Characters');
+});
 
 test('renders datatable with 9 items', () => {
   const mockTableData = generateMockTableData(9);
-  render(<ContentTable tableData={mockTableData} />);
+  render(<ContentTable selectedMovieEpisode={0} rows={mockTableData} />);
   const tableRowElements = screen.getAllByRole('checkbox');
   expect(tableRowElements).toHaveLength(mockTableData.length);
 });
 
 test('renders datatable with more than 10 items', () => {
   const mockTableData = generateMockTableData(15);
-  render(<ContentTable tableData={mockTableData} />);
+  render(<ContentTable selectedMovieEpisode={0} rows={mockTableData} />);
   const tableRowElements = screen.getAllByRole('checkbox');
   expect(tableRowElements).toHaveLength(defaultRowAmount);
 });
@@ -37,16 +42,9 @@ test('renders datatable with more than 10 items', () => {
 test('renders datatable with more than 10 items and shows them on next page', async () => {
   const rowsAmount = 15;
   const mockTableData = generateMockTableData(rowsAmount);
-  render(<ContentTable tableData={mockTableData} />);
+  render(<ContentTable selectedMovieEpisode={0} rows={mockTableData} />);
   const element = await screen.findByLabelText('Go to next page');
   fireEvent.click(element);
   const tableRowElements = screen.getAllByRole('checkbox');
   expect(tableRowElements).toHaveLength(rowsAmount - defaultRowAmount);
 });
-
-// test('renders datatable and selection of "rows per page" changing amount of rows on a page', () => {
-//   const rowsAmount = 15;
-//   const mockTableData = generateMockTableData(rowsAmount);
-//   const { getByText } = render(<ContentTable tableData={mockTableData} />);
-//   fireEvent.click(getByText(/Go to next page/));
-// });
