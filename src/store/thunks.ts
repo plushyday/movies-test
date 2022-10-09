@@ -9,13 +9,9 @@ export const fetchMovies = createAsyncThunk(
     try {
       const response = await fetch('https://swapi.dev/api/films');
 
-      if (!response.ok) {
-        throw new Error('Server Error!');
-      }
-
       const data: ServerDataMovies = await response.json();
 
-      if (Array.isArray(data?.results) && data.results.length > 0) {
+      if (data?.results?.length) {
         movies = data.results.reduce((container, item) => {
           container[item.episode_id] = {
             title: item.title,
@@ -68,9 +64,7 @@ export const fetchCharactersByMovie = createAsyncThunk<
 
       const charactersLinks: string[] = movies[episode_id].characters;
       const charactersResponses = await Promise.all(
-        charactersLinks
-          .slice(0, 2) // TODO: temp
-          .map((charachterLink) => fetch(charachterLink))
+        charactersLinks.map((charachterLink) => fetch(charachterLink))
       );
       const characters: ServerDataCharacter[] = await Promise.all(
         charactersResponses.map(async (res) => await res.json())

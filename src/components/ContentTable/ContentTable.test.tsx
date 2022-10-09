@@ -22,7 +22,7 @@ test('renders that datatable is empty', () => {
   const mockTableData: [] = [];
   render(<ContentTable selectedMovieEpisode={0} rows={mockTableData} />);
   const row = screen.getByRole('checkbox');
-  expect(row).toHaveTextContent(/There is no characters/gi);
+  expect(row).toHaveTextContent(/There is no characters/i);
 });
 
 test('renders datatable with 9 items', () => {
@@ -43,7 +43,7 @@ test('renders datatable with more than 10 items and shows them on next page', as
   const rowsAmount = 15;
   const mockTableData = generateMockTableData(rowsAmount);
   render(<ContentTable selectedMovieEpisode={0} rows={mockTableData} />);
-  const element = await screen.findByLabelText(/Go to next page/gi);
+  const element = await screen.findByLabelText(/Go to next page/i);
   fireEvent.click(element);
   const tableRowElements = screen.getAllByRole('checkbox');
   expect(tableRowElements).toHaveLength(rowsAmount - defaultRowAmount);

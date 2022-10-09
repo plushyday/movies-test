@@ -8,6 +8,14 @@ export const StyledItemPaper = styled(Paper)(() => ({
   textAlign: 'center',
 }));
 
+export const StyledItemPaperNoContent = styled(Paper)(({ theme }) => ({
+  width: '100%',
+  overflow: 'hidden',
+  textAlign: 'center',
+  color: theme.palette.primary.light,
+  backgroundColor: theme.palette.secondary.main,
+}));
+
 export const StyledHeader = styled(Typography)(({ theme }) => ({
   paddingTop: theme.spacing(1.5),
   color: theme.palette.primary.light,

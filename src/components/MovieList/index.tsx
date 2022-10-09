@@ -7,7 +7,7 @@ import { StyledContainer } from './style';
 
 export default function MovieList({ movies }: { movies: Movie[] }) {
   return (
-    <StyledContainer>
+    <StyledContainer maxWidth={false}>
       <Stack direction="row">
         {movies.map((movie) => (
           <MovieCard data={movie} key={movie.episode_id} />

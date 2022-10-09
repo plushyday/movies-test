@@ -1,12 +1,15 @@
 import * as React from 'react';
 
 import { Grid } from '@mui/material';
-import { TheaterComedy } from '@mui/icons-material';
 
 const Home = () => {
   return (
     <Grid item alignSelf="center">
-      <TheaterComedy />
+      <img
+        src="https://static.thenounproject.com/png/42395-200.png"
+        alt="r2d2"
+        loading="lazy"
+      />
     </Grid>
   );
 };
