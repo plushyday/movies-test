@@ -5,11 +5,11 @@ import { ArrowRight } from '@mui/icons-material';
 
 import { StyledLink, StyledPaper, StyledNavigationMenuGrid } from './style';
 
-const NavigationMenu = ({
+export default function NavigationMenu({
   navigationList,
 }: {
   navigationList: Navigation[];
-}) => {
+}) {
   return (
     <StyledNavigationMenuGrid item xs={12} md={3}>
       <StyledPaper>
@@ -24,6 +24,4 @@ const NavigationMenu = ({
       </StyledPaper>
     </StyledNavigationMenuGrid>
   );
-};
-
-export default NavigationMenu;
+}

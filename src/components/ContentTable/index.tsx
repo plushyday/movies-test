@@ -70,17 +70,12 @@ export default function ContentTable({
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.length > 0 ? (
+            {rows.length ? (
               rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.name}
-                    >
+                    <TableRow hover role="checkbox" key={row.name}>
                       {columns.map((column) => {
                         const value = row[column.id];
                         return (
@@ -94,8 +89,8 @@ export default function ContentTable({
                 })
             ) : (
               <TableRow hover role="checkbox" tabIndex={-1}>
-                <TableCell align={'center'}>
-                  <Typography>There is no Characters</Typography>
+                <TableCell colSpan={6} align={'center'}>
+                  <Typography>There is no characters</Typography>
                 </TableCell>
               </TableRow>
             )}

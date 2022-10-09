@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-import { Grid } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import NavigationMenu from 'components/NavigationMenu';
 
-import { StyledOutletGrid } from './style';
+import { StyledLayoutGridContainerstyled, StyledOutletGrid } from './style';
 
 export default function Layout({
   navigationList,
@@ -12,7 +11,7 @@ export default function Layout({
   navigationList: Navigation[];
 }) {
   return (
-    <Grid container>
+    <StyledLayoutGridContainerstyled container>
       <NavigationMenu navigationList={navigationList} />
       <StyledOutletGrid
         container
@@ -24,6 +23,6 @@ export default function Layout({
       >
         <Outlet />
       </StyledOutletGrid>
-    </Grid>
+    </StyledLayoutGridContainerstyled>
   );
 }

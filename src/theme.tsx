@@ -12,6 +12,9 @@ const colorPalette = {
 // A custom theme for this app
 const theme = createTheme({
   palette: {
+    background: {
+      default: colorPalette.main,
+    },
     primary: {
       main: colorPalette.main,
       dark: colorPalette.dark,

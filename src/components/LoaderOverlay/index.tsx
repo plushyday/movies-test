@@ -5,7 +5,7 @@ import { RootState, useAppSelector } from 'store';
 
 import { StyledBackdrop } from './style';
 
-const LoaderOverlay = () => {
+export default function LoaderOverlay() {
   const { status } = useAppSelector((state: RootState) => state.movies);
 
   return (
@@ -15,6 +15,4 @@ const LoaderOverlay = () => {
       </StyledBackdrop>
     </div>
   );
-};
-
-export default LoaderOverlay;
+}

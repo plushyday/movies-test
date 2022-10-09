@@ -1,27 +1,35 @@
 import * as React from 'react';
 
-import { Button, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { PeopleAltOutlined } from '@mui/icons-material';
 import { setCharactersByMovie } from 'store/thunks';
 import { useAppDispatch } from 'store';
 
-import { StyledItemPaper, StyledPaperSmallBlock } from './style';
+import {
+  StyledButton,
+  StyledItemPaper,
+  StyledGrid,
+  StyledPaperSmallBlock,
+} from './style';
 
 interface Props {
   data: Movie;
 }
 
-const MovieCard = ({ data: { title, episode_id, release_date } }: Props) => {
+export default function MovieCard({
+  data: { title, episode_id, release_date },
+}: Props) {
   const dispatch = useAppDispatch();
   return (
     <Grid container mr={5}>
       <StyledItemPaper>
-        <Grid container justifyContent="space-between" mb={5}>
-          <Grid item md={6}>
+        <StyledGrid container>
+          <Grid item xs={8}>
             <Typography>{title}</Typography>
+            <Typography>Release date:</Typography>
             <Typography>{release_date}</Typography>
           </Grid>
-          <Grid container item md={6} justifyContent="end">
+          <Grid container item xs={4} justifyContent="end">
             <StyledPaperSmallBlock elevation={0}>
               <Grid
                 container
@@ -36,19 +44,17 @@ const MovieCard = ({ data: { title, episode_id, release_date } }: Props) => {
               </Grid>
             </StyledPaperSmallBlock>
           </Grid>
-        </Grid>
-        <Button
-          variant="contained"
-          endIcon={<PeopleAltOutlined />}
-          onClick={() => {
-            dispatch(setCharactersByMovie(episode_id));
-          }}
-        >
-          Show people
-        </Button>
+          <StyledButton
+            variant="contained"
+            endIcon={<PeopleAltOutlined />}
+            onClick={() => {
+              dispatch(setCharactersByMovie(episode_id));
+            }}
+          >
+            Show people
+          </StyledButton>
+        </StyledGrid>
       </StyledItemPaper>
     </Grid>
   );
-};
-
-export default MovieCard;
+}

@@ -1,28 +1,16 @@
-import { Grid, Paper } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Grid } from '@mui/material';
 
 import { styled } from '@mui/material/styles';
 
-export const StyledLink = styled(Link)(({ theme }) => ({
-  textDecoration: 'none',
-  color: theme.palette.primary.light,
-}));
-
-export const StyledPaper = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.secondary.main,
-}));
-
-export const StyledNavigationMenuGrid = styled(Grid)(({ theme }) => ({
-  [theme.breakpoints.up('md')]: {
-    backgroundColor: theme.palette.primary.light,
-    padding: theme.spacing(2),
+export const StyledOutletGrid = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
     paddingTop: theme.spacing(2),
   },
 }));
 
-export const StyledOutletGrid = styled(Grid)(({ theme }) => ({
-  [theme.breakpoints.up('md')]: {
-    minHeight: '100vh',
-    backgroundColor: theme.palette.primary.main,
+export const StyledLayoutGridContainerstyled = styled(Grid)(({ theme }) => ({
+  minHeight: '100vh',
+  [theme.breakpoints.down('md')]: {
+    alignContent: 'flex-start',
   },
 }));
