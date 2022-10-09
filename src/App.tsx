@@ -11,8 +11,8 @@ import { fetchMovies } from 'store/thunks';
 import { useAppDispatch } from 'store';
 
 const navigationList = [
-  { title: 'about', path: 'about' },
-  { title: 'movies', path: 'movies' },
+  { title: 'About', path: 'about' },
+  { title: 'Movies', path: 'movies' },
 ];
 
 function App() {

@@ -6,6 +6,7 @@ const colorPalette = {
   dark: '#d5bdaf',
   light: '#f5ebe0',
   accent: '#b5838d',
+  accentDark: '#573f43',
   translucent: '#edede9',
 };
 
@@ -23,6 +24,7 @@ const theme = createTheme({
     },
     secondary: {
       main: colorPalette.accent,
+      dark: colorPalette.accentDark,
     },
     error: {
       main: red.A400,
